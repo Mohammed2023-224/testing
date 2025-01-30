@@ -9,14 +9,15 @@
 <!--   Version properties-->
   <properties>
     <selenium.version>4.27.0</selenium.version>
-    <testng>7.7.0</testng>
+    <testNG>7.7.0</testNG>
+    <mavenSurefire>org.apache.maven.plugins</mavenSurefire>
   </properties>
 
   <!--Plugins -->
 <build>
   <plugins>
     <plugin>
-      <groupId>org.apache.maven.plugins</groupId>
+      <groupId>${mavenSurefire}</groupId>
       <artifactId>maven-surefire-plugin</artifactId>
       <version>2.22.2</version>
       <configuration>
@@ -45,7 +46,7 @@
     <dependency>
       <groupId>org.testng</groupId>
       <artifactId>testng</artifactId>
-      <version>${testng}</version>
+      <version>${testNG}</version>
       <scope>compile</scope>
     </dependency>
 
