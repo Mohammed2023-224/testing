@@ -8,34 +8,38 @@ import java.time.Duration;
 
 public class Spaghetti {
 
-    public static void main(String[] args){
-        ChromeOptions options=new ChromeOptions();
+    public static void main(String[] args) {
+        ChromeOptions options = new ChromeOptions();
 //        options.addArguments("--headless");
         options.addArguments("--start-maximized");
 
         WebDriver driver = new ChromeDriver(options);
-//        Wait wait=new WebDriverWait(driver, Duration.ofSeconds(4));
-//        Wait wait=new  FluentWait<WebDriver>(driver).withTimeout(Duration.ofSeconds(2)).withMessage("testing")..pollingEvery(Duration.ofSeconds(2));
-
-        driver.navigate().to("https://www.google.com");
-        // implicit wait
+        /*  Waits
+        -- implicit wait
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-
-
-        By search=By.xpath("//textarea[@title='بحث']");
-        /* id - name - link text -partial link text - xpath - css selector
+        -- Explicit wait object
+        Wait wait=new WebDriverWait(driver, Duration.ofSeconds(4));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(search));
+        -- fluent wait object
+        Wait wait=new  FluentWait<WebDriver>(driver).withTimeout(Duration.ofSeconds(2)).withMessage("testing")..pollingEvery(Duration.ofSeconds(2));
         */
 
-//        wait.until(ExpectedConditions.visibilityOfElementLocated(search));   //explicit wait
+        driver.navigate().to("https://www.google.com");
 
+        By search = By.xpath("//textarea[@title='بحث']");
+     /*
+       -- xpath
+      --- id - className - name - link text -partial link text - xpath - css selector
+      driver.findElement(By.id(""))
+      driver.findElement(By.linkText("About Us"));   // Works with  tag a
+    */
 
-        By searchButton=test(1);
+        By searchButton = test(1);
         driver.findElement(search).sendKeys("test");
         driver.findElement(searchButton).click();
 
 //        driver.close();
     }
-// Xpath + wait + enter
 
      static By test(int index){
         return By.xpath("(//input[@class='gNO89b'])["+index+"]");
